@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }} — AI Learning Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <p class="eyebrow">AI LEARNING ASSISTANT</p>
+                <h1>Edu<span>Genie</span></h1>
+                <p class="subtitle">
+                    Ask, understand, practice, summarize, and build your learning path.
+                </p>
+            </div>
+            <div class="model-pill">Gemini • {{ model }}</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <div class="task-tabs" role="tablist">
+                <button class="task-btn active" data-task="qa">Ask</button>
+                <button class="task-btn" data-task="explain">Explain</button>
+                <button class="task-btn" data-task="quiz">Quiz</button>
+                <button class="task-btn" data-task="summarize">Summarize</button>
+                <button class="task-btn" data-task="learn">Learning Path</button>
+            </div>
+
+            <form id="task-form">
+                <label id="input-label" for="user-input">Ask a question</label>
+                <textarea
+                    id="user-input"
+                    placeholder="Example: Which is the largest ocean?"
+                    required
+                ></textarea>
+
+                <div id="extra-options" class="extra-options hidden">
+                    <label for="level">Current level</label>
+                    <select id="level">
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </div>
+
+                <div class="actions">
+                    <button class="primary-btn" id="submit-btn" type="submit">
+                        <span id="submit-text">Ask EduGenie</span>
+                        <span id="spinner" class="spinner hidden"></span>
+                    </button>
+                    <button class="secondary-btn" id="clear-btn" type="button">Clear</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="result-card" class="card result-card hidden">
+            <div class="result-heading">
+                <h2 id="result-title">Result</h2>
+                <button id="copy-btn" class="icon-btn" type="button">Copy</button>
+            </div>
+            <div id="result" class="result"></div>
+        </section>
+
+        <section class="feature-grid">
+            <article>
+                <div class="feature-icon">?</div>
+                <h3>Smart Q&A</h3>
+                <p>Get concise, student-friendly answers to academic questions.</p>
+            </article>
+            <article>
+                <div class="feature-icon">✦</div>
+                <h3>Simple Explanations</h3>
+                <p>Break complex concepts into definitions, key points, and examples.</p>
+            </article>
+            <article>
+                <div class="feature-icon">✓</div>
+                <h3>Practice Quizzes</h3>
+                <p>Generate MCQs with four options and explanations.</p>
+            </article>
+            <article>
+                <div class="feature-icon">≡</div>
+                <h3>Revision Summaries</h3>
+                <p>Turn long passages into quick revision notes.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        EduGenie • Built with FastAPI + Google Gemini
+    </footer>
+
+    <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>
